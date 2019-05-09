@@ -1,0 +1,63 @@
+<!-- Displays quiz grades without revealing students names -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <h2><b>Anonymous Dashboard Viewer</b></h2>
+
+    Anonymous Mode |
+    Quizzes:
+    {% for id in valid_quizzes %}
+    <a href="/quiz/{{id}}/results">{{id}}</a>
+    {% endfor %} |
+    <a href="/login">Login</a> <br>
+
+    <p>
+
+    </p>
+
+    <p>
+        {% if has_results %}
+        <b>Subject:</b> {{ list_of_quizzes[0][2] }} ({{ list_of_quizzes[0][4] }} questions)<br>
+        <b>Date of Quiz:</b> {{ list_of_quizzes[0][1] }}<br>
+        {% endif %}
+    </p>
+
+    <table>
+        <tr>
+            <th width="50%">
+                <center>Student</center>
+            </th>
+            <th width="50%">
+                <center>Grade</center>
+            </th>
+        </tr>
+        {% if has_results %}
+        {% for quiz in list_of_quizzes %}
+        <tr>
+            <td>
+                <center>{{ quiz[0] }}</center>
+            </td>
+            <td>
+                <center>{{ quiz[3] }}</center>
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="5">
+                <center><i>No results</i></center>
+            </td>
+        </tr>
+        {% endif %}
+    </table>
+
+
+</body>
+
+</html>
